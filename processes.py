@@ -6,7 +6,16 @@ import pickle
 import scipy
 
 class Process:
-    """Base class for stochastic processes."""
+    """Base class for stochastic processes.
+    
+    Attributes:
+    -----------
+    pars : dict (default: {})
+        Dictionary of model parameters names and values.
+    jump_times : numpy.ndarray
+        Jump times
+    jump_sizes : numpy.ndarray
+    """
 
     def __init__(self, pars = {}):
         self.pars = pars
@@ -133,7 +142,32 @@ class basic_affine_process(Process):
 
 
 class l(Process):
+    '''Process l^S from Theorem 4.1 in [1].
     
+    Parameters:
+    -----------
+    n : int
+        Number of entities.
+    S_star : set
+        Set S in Theorem 4.1.
+        Attention: must be subset of {0, 1, ..., n-1}.
+    phi_B : float (default: 0.1)
+        Entry value of indirect impact matrix, identical for all entries.
+    phi_A : float (default: 0.1)
+        Entry value of direct impact matrix, identical for all entries.
+    Delta_Gamma : float (default: 0.5)
+        Jump size of hazard process, identical for all entities.
+    verbose : bool (default: True)
+        If True, prints to screen iteration number while solving SDEs recursively.
+    
+    References:
+    -----------
+    This process was first introducted in Theorem 4.1. in [1]. 
+    This implementation is based on Algorithms 1 and 2 in [1].
+    
+    [1] Coculescu, Visentin - A default system with overspilling contagion.
+    '''
+
     def __init__(self, n, S_star, phi_B=0.1, phi_A=0.1, Delta_Gamma=0.5, verbose=True):
         self.n = n # number of entities
         self.N = set(list(range(self.n))) # {0, 1, ..., n-1}
