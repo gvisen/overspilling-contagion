@@ -8,10 +8,10 @@ To get started, you can follow the brief tutorial in the Jupyter notebook `demo.
 
 The main module is `processes`, which contains the following classes:
 
-* Process: base class for stochastic processes
-* Sample: base class for path samples of stochastic processes
-* basic_affine_process: implementation of the basic affine process of Duffie and Garleanu
-* l: implementation of the l process in Theorem 4.1 using Algorihtms 1 and 2.
+* `Process`: base class for stochastic processes
+* `Sample`: base class for path samples of stochastic processes
+* `basic_affine_process`: implementation of the basic affine process of Duffie and Garleanu
+* `l`: implementation of the $\ell^{S|D}$ process in Theorem 4.1 using Algorihtms 1 and 2.
 
 ## Dependencies
 
